@@ -1,0 +1,32 @@
+name: integration
+
+on:
+  workflow_run:
+    workflows: ["build"]
+    types:
+      - completed
+
+jobs:
+  integration:
+    runs-on: ubuntu-latest
+    environment: my-environment
+    steps:
+      # This step checks the secrets available to the workflow
+      - name: Check MY_SECRET
+        run: |
+          echo MY_SECRET is $MY_SECRET
+          if [[ $MY_SECRET == *"environment"* ]]; then
+            echo "This is the environment secret!"
+          if [[ $MY_SECRET == *"repository"* ]]; then
+            echo "This is the repository secret!"
+          else
+            echo "This is not the environment or repository secret!"
+          fi
+        env:
+          MY_SECRET: ${{ secrets.MY_SECRET }
+      - name: Download artifact
+        uses: actions/download-artifact@v2
+        with:
+          name: my-artifact
+      - name: Do stuff with the artifact
+        run: cat artifact.txt

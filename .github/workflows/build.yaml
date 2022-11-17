@@ -1,0 +1,15 @@
+name: build
+
+on:
+  pull_request:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build-artifact
+        run: echo "Hello, world!" > artifact.txt
+      - uses: actions/upload-artifact@v2
+        with:
+          name: my-artifact
+          path: artifact.txt
