@@ -10,6 +10,8 @@ jobs:
   # comment on the PR with the url and commit sha for this action run so that it can be approved
   comment:
     runs-on: ubuntu-latest
+    outputs:
+      comment-id: ${{ steps.comment-id.outputs.comment-id }}
     steps:
       - name: Comment on PR
         id: comment
