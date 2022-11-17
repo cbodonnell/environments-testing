@@ -13,3 +13,5 @@ jobs:
         with:
           name: my-artifact
           path: artifact.txt
+
+  # TODO: wait for the result of the integration workflow

@@ -7,8 +7,8 @@ on:
       - completed
 
 jobs:
+  # comment on the PR with the url for this action run so that it can be approved
   comment-on-pr:
-  # commend on the original PR with the url for this action run
     runs-on: ubuntu-latest
     steps:
       - name: Get the PR number
