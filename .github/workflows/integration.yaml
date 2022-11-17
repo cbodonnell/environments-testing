@@ -44,7 +44,7 @@ jobs:
           echo MY_SECRET is $MY_SECRET
           if [[ $MY_SECRET == *"environment"* ]]; then
             echo "This is the environment secret!"
-          if [[ $MY_SECRET == *"repository"* ]]; then
+          elif [[ $MY_SECRET == *"repository"* ]]; then
             echo "This is the repository secret!"
           else
             echo "This is not the environment or repository secret!"
