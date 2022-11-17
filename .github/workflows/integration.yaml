@@ -12,12 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Comment on PR
+        id: comment
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
           body: |
             Integration workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             Commit: ${{ github.event.workflow_run.head_sha }}
+      - name: Output the comment-id
+        id: comment-id
+        run: echo "comment-id=${{ steps.comment.outputs.comment-id }}" >> $GITHUB_OUTPUT
 
   integration:
     runs-on: ubuntu-latest
