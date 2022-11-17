@@ -77,6 +77,4 @@ jobs:
         with:
           comment-id: ${{ needs.comment.outputs.comment-id }}
           body: |
-            Integration workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
-            Commit: ${{ github.event.workflow_run.head_sha }}
             Status: ${{ job.status }}
