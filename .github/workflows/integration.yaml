@@ -70,7 +70,8 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{ github.event.workflow_run.pull_requests[0].number }}
+          comment-id: ${{ needs.comment.outputs.comment-id }}
           body: |
             Integration workflow run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
             Commit: ${{ github.event.workflow_run.head_sha }}
-            Status: ${{ needs.integration.result }}
+            Status: ${{ job.status }}
